@@ -57,7 +57,7 @@ public class Heap<T extends Comparable<T>> {
         while (2 * k <= N) {
             int j = 2 * k;  // 默认左子节点
             if (j < N && less(j, j + 1)) { 
-                j++;  // 若 右子节点只较大，则 j 记录右子节点
+                j++;  // 若 右子节点值较大，则 j 记录右子节点
             }
             // 如果该节点不小于子节点了 则停止下潜
             if (!less(k, j)) break;

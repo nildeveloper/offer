@@ -20,7 +20,7 @@ public class QuickSort<T extends Comparable<T>> extends Sort<T> {
      * @param nums
      */
     private void shuffle(T[] nums) {
-        List<Comparable> list = (List<Comparable>) Arrays.asList(nums);
+        List<T> list = Arrays.asList(nums);
         Collections.shuffle(list);
         list.toArray(nums);
     }
