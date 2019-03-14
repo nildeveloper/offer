@@ -1,11 +1,10 @@
 package com.lhl;
 
-import com.sun.org.apache.regexp.internal.RE;
 
 import java.util.*;
 
 /**
- * Created with IntellJ IDEA.
+ * Created with IntelliJ IDEA.
  * User: lhl
  * Date: 2019-02-12
  * Time: 13:15
@@ -215,7 +214,7 @@ public class Solution1 {
      * 斐波纳挈数列
      * 1. 递归 : 子问题会重复求解
      * 2. 递推
-     * @param args
+     * @param n
      */
     public int Fibonacci(int n) {
         if (n == 0) {
@@ -317,10 +316,14 @@ public class Solution1 {
     }
 
     public static void main(String[] args) {
-        int[] a = new int[]{3,9,20,15,7};
-        int[] b = new int[]{9,3,15,20,7};
-        Solution1 solution1 = new Solution1();
-        TreeNode treeNode = solution1.reConstructBinaryTree(a, b);
-        System.out.println(treeNode.left.val);
+//        int[] a = new int[]{3,9,20,15,7};
+//        int[] b = new int[]{9,3,15,20,7};
+//        Solution1 solution1 = new Solution1();
+//        TreeNode treeNode = solution1.reConstructBinaryTree(a, b);
+//        System.out.println(treeNode.left.val);
+        int a = 4;
+        System.out.println(a >> 1); // 2
+        System.out.println(a << 2); // 16
+        System.out.println(a << 3);  // 32
     }
 }
