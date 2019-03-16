@@ -36,7 +36,7 @@ public class JoinABC {
             }
             System.out.println("B");
         }
-    }
+    } 
     
     static class Thread3 extends Thread {
         private Thread2 thread2;
