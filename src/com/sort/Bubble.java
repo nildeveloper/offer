@@ -1,5 +1,9 @@
 package com.sort;
 
+import org.junit.Test;
+
+import java.util.Arrays;
+
 /**
  * Created with IntellJ IDEA.
  * User: lhl
@@ -20,5 +24,13 @@ public class Bubble<T extends Comparable<T>> extends Sort<T> {
                 }
             }
         }
+    }
+    
+    @Test
+    public void testBubble() {
+        Integer[] nums = new Integer[]{2,5,1,3,6};
+        Bubble<Integer> bubble = new Bubble<>();
+        bubble.sort(nums);
+        System.out.println(Arrays.toString(nums));
     }
 }
