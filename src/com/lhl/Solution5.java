@@ -2,8 +2,6 @@ package com.lhl;
 
 import org.junit.Test;
 
-import org.junit.Test;
-
 import java.util.*;
 /**
  * Created with IntelliJ IDEA.
