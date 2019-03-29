@@ -1,6 +1,5 @@
 package com.thread;
 
-import com.Main;
 
 /**
  * Created with IntelliJ IDEA.
@@ -8,7 +7,7 @@ import com.Main;
  * Date: 2019-03-14
  * Time: 22:23
  * Description: Join
- */
+ */ 
 public class JoinABC {
     
     private static Object object = new Object();
