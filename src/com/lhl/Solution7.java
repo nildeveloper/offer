@@ -84,6 +84,55 @@ public class Solution7 {
         }
         return maxProfit;
     }
+
+    /**
+     * 求 n! 
+     * 要求不能使用乘除法、for、while、if、else、switch、case等关键字及条件判断语句（A?B:C）
+     * && 短路与特性 前面为false，后面不在判断
+     * 当 n == 0时，只判断（n > 0）不成立false，后面不执行
+     * 当 n > 0时，地柜调用进行计算
+     * @param n
+     * @return
+     */
+    public int Sum_Solution(int n) {
+        int sum = n;
+        boolean b = (n > 0) && ((sum += Sum_Solution(n - 1)) > 0);
+        return sum;
+    }
+
+
+    /**
+     * 不用加减乘除做加法
+     * a ^ b 表示没有考虑进位的情况下两数的和，(a & b) << 1 就是进位。
+     * 递归会终止的原因是 (a & b) << 1 最右边会多一个 0，那么继续递归，
+     * 进位最右边的 0 会慢慢增多，最后进位会变为 0，递归终止。
+     * @param num1
+     * @param num2
+     * @return
+     */
+    public int Add(int num1,int num2) {
+        return num2 == 0 ? num1 : Add(num1 ^ num2, (num1 & num2) << 1);
+    }
+
+
+    /**
+     * 构建乘机数组
+     * 给定一个数组A[0,1,...,n-1],请构建一个数组B[0,1,...,n-1],其中B中的
+     * 元素B[i]=A[0]*A[1]*...*A[i-1]*A[i+1]*...*A[n-1]。不能使用除法。
+     * @param A
+     * @return
+     */
+    public int[] multiply(int[] A) {
+        int n = A.length;
+        int[] B = new int[n];
+        for (int i = 0, product = 1; i < n; product *= A[i], i++) {
+            B[i] = product;
+        }
+        for (int i = n - 1, product = 1; i >= 0; product *= A[i], i--) {
+            B[i] *= product;
+        }
+        return B;
+    }
     
     
     
