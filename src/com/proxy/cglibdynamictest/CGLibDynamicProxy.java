@@ -21,8 +21,8 @@ public class CGLibDynamicProxy implements MethodInterceptor{
     private Object getProxyObject(Object proxy) {
         this.proxy = proxy;
         Enhancer enhancer = new Enhancer();
-        enhancer.setSuperclass(this.proxy.getClass());
-        enhancer.setCallback(this);
+        enhancer.setSuperclass(this.proxy.getClass());  // 设置要代理的类即Apple.class
+        enhancer.setCallback(this);  // 设置回调即MethodInterceptor的实现类
         return enhancer.create();
     }
 

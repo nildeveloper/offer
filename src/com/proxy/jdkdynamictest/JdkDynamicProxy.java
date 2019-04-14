@@ -34,7 +34,7 @@ public class JdkDynamicProxy {
     
     // 返回一个被修改过的对象（两个参数：接口对象、实现类对象）
     public static Object getProxyObject(Class interfaceClazz, Object proxy) {
-        return Proxy.newProxyInstance(interfaceClazz.getClassLoader(), new Class[]{interfaceClazz}, new MyHandler(proxy));
+        return Proxy.newProxyInstance(interfaceClazz.getClassLoader(), interfaceClazz.getInterfaces(), new MyHandler(proxy));
     }
 
     public static void main(String[] args) {
