@@ -8,7 +8,7 @@ import java.util.Map;
  * User: lhl
  * Date: 2019-03-02
  * Time: 10:07
- * Description:
+ * Description: LRU Cache 使用LinkedHashMap 实现
  */
 public class LRUCache<K,V> extends LinkedHashMap<K,V> {
     
