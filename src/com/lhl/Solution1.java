@@ -174,9 +174,9 @@ public class Solution1 {
             inLeft[i] = in[i];
             preLeft[i] = in[i + 1];
         }
-            for (int i = rootIndex + 1, j = 0; i < inLen; i++,j++) {
-                inRight[j] = in[i];
-                preRight[j] = in[i];
+        for (int i = rootIndex + 1, j = 0; i < inLen; i++, j++) {
+            inRight[j] = in[i];
+            preRight[j] = in[i];
         }
         // 创建根节点
         TreeNode root = new TreeNode(pre[0]);
