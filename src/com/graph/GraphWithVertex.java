@@ -16,7 +16,7 @@ public class GraphWithVertex {
         public char label;
         public boolean visited;
         public Vertex(char label) {
-            this.label = label;
+            this.label = label; 
             visited = false;
         }
     }
