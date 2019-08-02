@@ -1,7 +1,4 @@
-/**
- * 
- */
-package com.bm.framework.exception;
+package com.lhl.boot.exception;
 
 /**
  * 所有业务异常，该异常会被controller的拦截器统一拦截，并将msg返回给前端，因此，只有业务问题才抛出该异常，并且msg是友好的。

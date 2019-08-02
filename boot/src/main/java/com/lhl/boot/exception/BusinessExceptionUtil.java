@@ -1,8 +1,4 @@
-/**
- * 
- */
-package com.bm.framework.exception;
-
+package com.lhl.boot.exception;
 /**
  * 抛出业务异常的工具类
  * 
