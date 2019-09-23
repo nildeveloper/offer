@@ -17,7 +17,7 @@ public class Shell<T extends Comparable<T>> extends Sort<T> {
     public void sort(T[] nums) {
         int length = nums.length;
         // 以相聚某个增量的记录组成一个子序列， 此处以 d 为增量
-        for (int d = 2 / length; d >= 1; d = d / 2) {
+        for (int d = length / 2; d >= 1; d = d / 2) {
             // 以 d 为增量在子序列内进行插入排序
             for (int i = d; i < length; i++) {
                 for (int j = i; j >= d && less(nums[j], nums[j - d]); j -= d) {

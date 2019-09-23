@@ -86,7 +86,7 @@ public class Solution2 {
         int i = 0, j = oddCount;
         for (int num : copy) {
             if (num % 2 != 0) {
-                array[i++] = num;  // 奇数扔数组前面
+                 array[i++] = num;  // 奇数扔数组前面
             } else {
                 array[j++] = num;  // 偶数扔数组后面
             }

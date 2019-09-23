@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body style="margin: 0;padding: 0;">
+    <table style="font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei','Helvetica Neue',Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';
+    width:920px;height:600px; background:url(${url}),#F6735D; background-size:cover; color:rgba(255,255,255,1); display: block; padding-top:230px;padding-left: 519px;box-sizing: border-box">
+    <tr style="margin:0; padding: 0;">
+        <td style="margin:0; padding: 0;"> 
+            <table style = "width:350px;height:112px;font-size:18px;line-height:28px;margin: 0;padding: 0;">
+                
+                    <tr style="margin: 0;padding: 0;font-size: 24px;margin-bottom:20px;display: block;font-weight:600;height: 36px;line-height:36px;">
+                        <td style="margin: 0;padding: 0;">亲爱的${name}同学：</td>
+                    </tr>
+                    <tr style="margin: 0;padding: 0;height: 120px;line-height:30px;font-size:20px;font-weight: 400;display: block;">
+                        <td style="margin: 0;padding: 0;text-align: justify;">在 这 一 年，我 们 一 起 战 斗，一 起 拼 搏，一 起 欢 笑，一 起 成 长，祝 我 最 爱 的 比 特 人，最 棒 的 你 生 日 快 乐！<span></span></td>
+                    </tr>
+            </table>
+            <table style = "width:350px;height:40px;font-size:14px;font-weight:400;line-height:20px;text-align:right;margin-top:20px;padding:0;">
+                <tr style="margin: 0;padding:0;">
+                    <td style="margin: 0;padding: 0;">人力资源部</td>
+                </tr>
+                <tr style="margin: 0;padding: 0;">
+                    <td style="margin: 0;padding: 0;">2019.09.12</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    </table>
+</body>
+</html>

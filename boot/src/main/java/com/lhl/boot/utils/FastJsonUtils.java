@@ -6,7 +6,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.JSONLibDataFormatSerializer;
 import com.alibaba.fastjson.serializer.SerializeConfig;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.edu.bean.Msg;
 
 import java.util.List;
 import java.util.Map;
@@ -128,26 +127,26 @@ public class FastJsonUtils {
      * @param clazz
      * @return
      */
-    public static Msg toMsg(String res, Class<?> clazz) {
-        Msg msg = toBean(res, Msg.class);
-        Map<String, Object> map = msg.getExtend();
-        // msg 中extend 中的 list 是一个JSONArray, Object 是一个 JSONObject
-        if (map.size() != 0) {
-            for (String k : map.keySet()) {
-                if (map.get(k) instanceof JSONArray) {
-                    JSONArray jsonArray = (JSONArray) map.get(k);
-                    List list =  jsonArray.toJavaList(clazz);
-                    map.remove(k);  // 删除map中原来的key对应的实体
-                    map.put(k, list);
-                } else if (map.get(k) instanceof JSONObject) {
-                    JSONObject jsonObject = (JSONObject) map.get(k);
-                    Object object = jsonObject.toJavaObject(clazz);
-                    map.remove(k);
-                    map.put(k, object);
-                }
-            }
-        }
-        return msg;
-    }
+//    public static Msg toMsg(String res, Class<?> clazz) {
+//        Msg msg = toBean(res, Msg.class);
+//        Map<String, Object> map = msg.getExtend();
+//        // msg 中extend 中的 list 是一个JSONArray, Object 是一个 JSONObject
+//        if (map.size() != 0) {
+//            for (String k : map.keySet()) {
+//                if (map.get(k) instanceof JSONArray) {
+//                    JSONArray jsonArray = (JSONArray) map.get(k);
+//                    List list =  jsonArray.toJavaList(clazz);
+//                    map.remove(k);  // 删除map中原来的key对应的实体
+//                    map.put(k, list);
+//                } else if (map.get(k) instanceof JSONObject) {
+//                    JSONObject jsonObject = (JSONObject) map.get(k);
+//                    Object object = jsonObject.toJavaObject(clazz);
+//                    map.remove(k);
+//                    map.put(k, object);
+//                }
+//            }
+//        }
+//        return msg;
+//    }
     
 }
