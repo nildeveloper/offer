@@ -3,10 +3,7 @@ package com.jianzhi2;
 import com.algorithm.Solution;
 import sun.plugin.javascript.navig.Link;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -212,11 +209,219 @@ public class Solution1 {
         if (head == null || head.next == null) {
             return head;
         }
-        ListNode next = head.next;
-        // TODO
-        return null;
+        ListNode pHead = head;
+        head = head.next;
+        pHead.next = null;
+        ListNode p = null;
+        while (head != null) {
+            p = head.next;
+            head.next = pHead;
+            pHead = head;
+            head = p;
+        }
+        return pHead;
     }
 
+    /**
+     * 合并两个排序的链表
+     * @param list1
+     * @param list2
+     * @return
+     */
+    public ListNode Merge(ListNode list1,ListNode list2) {
+        ListNode head = null;
+        if (list1 == null) {
+            return list2;
+        }
+        if (list2 == null) {
+            return list1;
+        }
+        if (list1.val < list2.val) {
+            list1.next = Merge(list1.next, list2);
+            return list1;
+        } else {
+            list2.next = Merge(list1, list2.next);
+            return list2;
+        }
+    }
+    
+    public ListNode Merge1(ListNode list1, ListNode list2) {
+        ListNode head = new ListNode(-1);
+        ListNode p = head;
+        while (list1 != null && list2 != null) {
+            if (list1.val < list2.val) {
+                p.next = list1;
+                list1 = list1.next;
+            } else {
+                p.next = list2;
+                list2 = list2.next;
+            }
+            p = p.next;
+        }
+        if (list1.next != null) {
+            p.next = list1;
+        }
+        if (list2.next != null) {
+            p.next = list2;
+        }
+        return head.next;
+    }
+
+    /**
+     * 二叉树A、B
+     * 判断B是不是A的子结构
+     * @param root1
+     * @param root2
+     * @return
+     */
+    public boolean HasSubtree(TreeNode root1,TreeNode root2) {
+        if (root1 == null || root2 == null) {
+            return false;
+        }
+        return isSubTree(root1, root2) || isSubTree(root1.left, root2) || isSubTree(root1.right, root2);
+    }
+    public boolean isSubTree(TreeNode root1, TreeNode root2) {
+        if (root2 == null) {
+            return true;
+        }
+        if (root1 == null) {
+            return false;
+        }
+        if (root1.val != root2.val){
+            return false;
+        }
+        return isSubTree(root1.left, root2.left) && isSubTree(root1.right, root2.right);
+    }
+
+    /**
+     * 镜像二叉树
+     * @param root
+     */
+    public void Mirror(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+        Mirror(root.left);
+        Mirror(root.right);
+    }
+
+    /**
+     * 判断是否是入栈顺序的出栈顺序
+     * @param pushA
+     * @param popA
+     * @return
+     */
+    public boolean IsPopOrder(int [] pushA,int [] popA) {
+        if (pushA.length == 0 || popA.length == 0) {
+            return false;
+        }
+        LinkedList<Integer> stack = new LinkedList<>();
+        int popIndex = 0;
+        for (int i = 0; i < pushA.length; i++) {
+            stack.push(pushA[i]);
+            while (popIndex < popA.length && !stack.isEmpty() && stack.peek() == popA[popIndex]) {
+                stack.pop();
+                popIndex++;
+            }
+        }
+        return stack.isEmpty();
+    }
+
+    /**
+     * 判断一个数组 是否是二叉搜索树后序遍历结果
+     * 二叉搜索树：中序遍历结果是一个有序序列
+     * 特点：左子树上所有结点的值均小于它的根结点的值； 右子树上所有结点的值均大于它的根结点的值
+     * @param sequence
+     * @return
+     */
+    public boolean VerifySquenceOfBST(int [] sequence) {
+        if (sequence.length == 0) {
+            return false;
+        }
+        if (sequence.length == 1) {
+            return true;
+        }
+        return isBst(sequence, 0, sequence.length - 1);
+    }
+    
+    // 后序遍历：左右根  根节点在最后
+    // 思想就是  左边都小于根节点， 右边都大于根节点
+    public boolean isBst(int[] sequence, int left, int right) {
+        // 跳出条件
+        if (left >= right) {
+            return true;
+        }
+        int rootVal = sequence[right];
+        int currentIndex = left;
+        // 找到左右分界点  左边都小于根节点
+        while (sequence[currentIndex] < rootVal) {
+            currentIndex++;
+        }
+        // 找到分界点后判断  右边都大于根节点
+        for (int i = 0; i < right; i++) {
+            if (sequence[i] < rootVal) {
+                return false;
+            }
+        }
+        // 递归进行判断
+        return isBst(sequence, left, currentIndex - 1) && isBst(sequence, currentIndex, right);
+    }
+
+    /**
+     * 二叉树根节点和一个整数，找和等于这个整数的全部路径
+     * 深搜
+     * @param root
+     * @param target
+     * @return
+     */
+    private ArrayList<ArrayList<Integer>> ret = new ArrayList<>();
+    private ArrayList<Integer> list = new ArrayList<>();
+    
+    public ArrayList<ArrayList<Integer>> FindPath(TreeNode root, int target) {
+        if (root == null) {
+            return ret;
+        }
+        list.add(root.val);
+        target -= root.val;
+        // 到达叶子节点，且符合题目要求
+        if (target == 0 && root.left == null && root.right == null) {
+            ret.add(new ArrayList<>(list));
+        }
+        FindPath(root.left, target);
+        FindPath(root.right, target);
+        // 处理到叶子节点后，不符合需求，回溯到父节点
+        list.remove(list.size() - 1);
+        return ret;
+    }
+
+    /**
+     * 
+     * 求滑动窗口中最大值
+     * @param num
+     * @param size
+     * @return
+     */
+    public ArrayList<Integer> maxInWindows(int [] num, int size) {
+        ArrayList<Integer> ret = new ArrayList<>();
+        if (num.length < size || size < 1) {
+            return ret;
+        }
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
+        for (int i = 0; i < size; i++) {
+            queue.offer(num[i]);
+        }
+        ret.add(queue.peek());
+        for (int i = 0, j = i + size; j < num.length; i++, j++) {
+            queue.remove(num[i]);
+            queue.offer(num[j]);
+            ret.add(queue.peek());
+        }
+        return ret;
+    }
+    
     
     public static void main(String[] args) {
         Solution1 solution1 = new Solution1();

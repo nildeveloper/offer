@@ -1,0 +1,30 @@
+<html>
+<body>
+
+<script>
+    var origin = [
+        {skill:"js", user:"Chad"},
+        {skill:"js", user:"test"},
+        {skill:"js", user:"test1"},
+        {skill:"html", user:"sue"},
+        {skill:"css", user:"sue"},
+        {skill:"css", user:"bills"},
+        
+    ];
+    function transfromOrigin(arr) {
+        var map = {}, dest = [];
+        for (var i = 0; i < arr.length; i++) {
+            var tmp = arr[i];
+            if (!map[tmp.skill]) {
+                dest.push({
+                    skill : tmp.skill,
+                    user : [tmp.user],
+                    count : 0
+                });
+                map[tmp.id] = tmp;
+            }
+        }
+    }
+</script>
+</body>
+</html>

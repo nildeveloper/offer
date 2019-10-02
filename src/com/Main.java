@@ -14,6 +14,41 @@ import java.util.stream.Collectors;
 
 
 public class Main {
+    
+
+    public static void main(String[] args) {
+        
+//        int sum = 0;
+//        for (int i = 1; i <= 100; i++) {
+//            if (i %2 != 0) {
+//                sum += i;
+//            }
+//        }
+//        System.out.println(sum);
+//        int a = 10;
+//        long b = 20;
+//        test(a,b);
+//        String s = "I am a good cat";
+//        System.out.println(s.indexOf("a", 7));
+        System.out.println(func(20));
+    }
+    
+    public static  int func(int target) {
+        if (target == 1) {
+            return  1;
+        }
+        if (target == 2) {
+            return 3;
+        }
+        return 2 * func(target - 1) + func(target - 2);
+    }
+    
+    public static void test(int a, double b) {
+        System.out.println("haha" + (a + b));
+    }
+    public static void test(int a, float b) {
+        System.out.println("hahaha" + (a +b));
+    }
 
 //    public static void main(String[] args) {
 //        Scanner in = new Scanner(System.in);
