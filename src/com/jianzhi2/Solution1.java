@@ -421,6 +421,47 @@ public class Solution1 {
         }
         return ret;
     }
+
+    /**
+     * " abc blue skylight " --> "skylight blue abc" 空间复杂度为 O(1)
+     * 先反转整个句子 在反转每个单词
+     * @param str
+     */
+    public String ReverseSentence(String str) {
+        char[] chars = str.toCharArray();
+        reverse(chars, 0, chars.length - 1);
+        // 反转每个单词
+        int blank = -1;
+        for (int i = 0; i < chars.length; i++) {
+            if (chars[i] == ' ') {
+                int nextBlank = i;
+                reverse(chars, blank + 1, nextBlank);
+                blank = nextBlank;
+            }
+        }
+        // 反转最后一个单词
+        reverse(chars, blank + 1, chars.length - 1);
+        return new String(chars);
+    }
+
+    /**
+     * 反转整个句子
+     * @param chars
+     * @param begin
+     * @param end
+     */
+    private void reverse(char[] chars, int begin, int end) {
+        if (chars == null || chars.length == 0) {
+            return;
+        }
+        while (begin < end) {
+            char tmp = chars[begin];
+            chars[begin] = chars[end];
+            chars[end] = tmp;
+            begin++;
+            end--;
+        }
+    }
     
     
     public static void main(String[] args) {
