@@ -1,4 +1,4 @@
-package com.tc;
+package com.exams.tc;
 
 import java.util.Scanner;
 

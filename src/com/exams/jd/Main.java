@@ -1,6 +1,4 @@
-package com.jd;
-
-import org.junit.Test;
+package com.exams.jd;
 
 import java.util.*;
 

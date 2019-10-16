@@ -1,4 +1,4 @@
-package com.bytebeat;
+package com.exams.bytebeat;
 
 import java.util.Arrays;
 import java.util.Scanner;

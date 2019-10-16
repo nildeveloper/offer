@@ -1,4 +1,4 @@
-package com.meituan;
+package com.exams.meituan;
 
 import org.junit.Test;
 

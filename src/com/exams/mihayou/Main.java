@@ -1,9 +1,6 @@
-package com.mihayou;
+package com.exams.mihayou;
 
 import java.util.*;
-import java.util.function.Function;
-import java.util.logging.Level;
-import java.util.stream.Collectors;
 
 /**
  * Created with IntelliJ IDEA.

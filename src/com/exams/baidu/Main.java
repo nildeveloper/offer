@@ -1,4 +1,4 @@
-package com.baidu;
+package com.exams.baidu;
 import java.util.*;
 
 public class Main {

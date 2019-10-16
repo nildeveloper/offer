@@ -1,4 +1,4 @@
-package com.fasthand;
+package com.exams.fasthand;
 
 import java.util.Scanner;
 

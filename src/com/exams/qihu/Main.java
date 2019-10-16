@@ -1,4 +1,4 @@
-package com.qihu; /**
+package com.exams.qihu; /**
  * Created with IntellJ IDEA.
  * User: lhl
  * Date: 2019-02-20
@@ -6,7 +6,6 @@ package com.qihu; /**
  * Description:
  */
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -91,7 +90,7 @@ public class Main {
 }
 
 
-//public class com.qihu.Main {
+//public class com.exams.qihu.Main {
 //    public static void main(String[] args) {
 //        Scanner in = new Scanner(System.in);
 //        int ret = 0;

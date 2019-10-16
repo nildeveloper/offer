@@ -1,4 +1,4 @@
-package com.bluebridge;
+package com.exams.bluebridge;
 
 import java.util.Scanner;
 
