@@ -2,8 +2,11 @@ package com.test;
 
 import org.junit.Test;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -116,12 +119,71 @@ public class Test1 {
     }
 
 
+    @Test
+    public void testStr() {
+        String str = "Hello World";
+        String[] split = str.split(" ");
+        System.out.println(split[0]);
+        System.out.println(split[1]);
+        System.out.println(split[0].toUpperCase());
+        System.out.println(split[1].toLowerCase());
+        String dateStr = "20100110";
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyyMMdd");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy年M月dd日");
+        try {
+            Date date = inputFormat.parse(dateStr);
+            System.out.println(outputFormat.format(date));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
 
 
+    public static void main(String[] args) {
+        double height = 100;
+        int count = 10;
+        double sum = height;
+        double tmp = 0;
+        for (int i = 0; i < count; i++) {
+            sum += (2 * tmp);
+            height /= 2;
+            tmp = height;
+        }
+        System.out.println(height);
+        System.out.println(tmp);
+    }
+    
+    @Test
+    public void test1() {
+        double height = 100;
+        int count = 10;
+        double sum = height;
+        double tmp = 0;
+        for (int i = 0; i < count; i++) {
+            sum += (2 * tmp);
+            height /= 2;
+            tmp = height;
+        }
+        System.out.println(sum);
+        System.out.println(tmp);
+    }
 
 
-
-
+    public static void resolve(int n) {
+        for (int i = 2; i < n / 2; i++) {
+            if (n % i == 0) {
+                System.out.print(i + "*");
+                resolve(n / i);
+            }
+        }
+        System.out.print(n);
+        System.exit(0);
+    }
+    
+    @Test
+    public void test2() {
+        resolve(90);
+    }
 
 
 
