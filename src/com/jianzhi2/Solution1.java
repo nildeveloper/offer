@@ -258,10 +258,10 @@ public class Solution1 {
             }
             p = p.next;
         }
-        if (list1.next != null) {
+        if (list1 != null) {
             p.next = list1;
         }
-        if (list2.next != null) {
+        if (list2 != null) {
             p.next = list2;
         }
         return head.next;
