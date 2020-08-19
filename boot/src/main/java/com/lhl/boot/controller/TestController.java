@@ -1,6 +1,7 @@
 package com.lhl.boot.controller;
 
 import com.lhl.boot.service.TestService;
+import jdk.nashorn.internal.objects.annotations.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,11 @@ public class TestController {
             return "false";
         }
         return "true";
+    }
+
+    @GetMapping("/log")
+    public String log() {
+        return testService.testLog("Hello World!");
     }
 
 }

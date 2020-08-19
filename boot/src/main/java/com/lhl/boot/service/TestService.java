@@ -46,4 +46,9 @@ public class TestService {
         imageWriter.write(image, "pic.jpg");
         File pic = new File("pic.jgp");
     }
+
+    public String testLog(String param) {
+        System.out.println(param);
+        return "log finished!";
+    }
 }
