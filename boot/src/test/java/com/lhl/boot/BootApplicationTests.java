@@ -2,6 +2,8 @@ package com.lhl.boot;
 
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.google.common.collect.HashMultiset;
+import com.google.common.collect.Lists;
 import com.lhl.boot.entity.TestEntity;
 import com.lhl.boot.spider.service.AiQiYiService;
 import com.lhl.boot.utils.FreemarkerUtil;
@@ -19,6 +21,7 @@ import reactor.core.publisher.Mono;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
