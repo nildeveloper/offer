@@ -24,6 +24,14 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    redisson:
+      # 配置单点模式
+      config: classpath:redisson-single-dev.yml
+
 mybatis:
   # 指定全局配置文件位置（这里优先使用注解方式配置mybatis）
   #config-location: classpath:mybatis/mybatis-config.xml
