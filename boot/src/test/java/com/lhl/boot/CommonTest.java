@@ -11,6 +11,7 @@ import org.junit.runners.JUnit4;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -84,7 +85,7 @@ public class CommonTest {
     @Test
     public void commonTest() {
         long startTime = System.currentTimeMillis();
-        List<String> collect = IntStream.range(1, 100).boxed().map(item -> getRet(item)).collect(Collectors.toList());
+        List<Object> collect = IntStream.range(1, 100).boxed().map(item -> getRetByArg(item)).collect(Collectors.toList());
         System.out.println(collect);
         long endTime = System.currentTimeMillis();
         System.out.println("consume:" + (endTime - startTime) + " ms");
@@ -98,4 +99,41 @@ public class CommonTest {
         }
         return "ret" + arg;
     }
+
+    private Integer getRetByArg(int time) {
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return time;
+    }
+
+    @Test
+    public void CompletableFutureTest() {
+        long startTime = System.currentTimeMillis();
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
+        CompletableFuture[] completableFutures = IntStream.range(1, 100)
+                .boxed()
+                .map(num -> CompletableFuture.supplyAsync(() -> getRetByArg(num), executorService))
+                .toArray(CompletableFuture[]::new);
+        CompletableFuture.allOf(completableFutures).join();
+        List<Object> list = Arrays.stream(completableFutures)
+                .map(item -> {
+                    try {
+                        if(new Random().nextBoolean() == true) {
+                            throw new RuntimeException();
+                        }
+                        return item.get();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    return null;
+                })
+                .collect(Collectors.toList());
+        System.out.println(list);
+        long endTime = System.currentTimeMillis();
+        System.out.println("consume:" + (endTime - startTime) + " ms");
+    }
+
 }
