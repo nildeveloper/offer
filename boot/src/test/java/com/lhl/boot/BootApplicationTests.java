@@ -4,9 +4,11 @@ import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.lhl.boot.entity.TestEntity;
 import com.lhl.boot.spider.service.AiQiYiService;
 import com.lhl.boot.utils.FreemarkerUtil;
+import com.lhl.boot.utils.HttpClientUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +22,7 @@ import reactor.core.publisher.Mono;
 
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -99,6 +102,19 @@ public class BootApplicationTests {
         // 网页内容
         log.info(htmlPage.asText());
         webClient.close();
+    }
+
+    @Test
+    public void getDy() throws URISyntaxException {
+        String url = "https://www.amemv.com/web/api/v2/aweme/post/?user_id=96134000367";
+        Map<String, Object> header = Maps.newHashMap();
+        header.put("user-agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36");
+        Map<String, Object> param = Maps.newHashMap();
+        param.put("aid", "1128");
+        param.put("count", "21");
+        param.put("max_cursor", "");
+        String userInfo = HttpClientUtils.httpGetRequest(url, header, param);
+        System.out.println(userInfo);
     }
 
 }

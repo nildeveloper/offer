@@ -3,6 +3,7 @@ package com.lhl.boot;
 import io.vavr.Function0;
 import io.vavr.Function1;
 import io.vavr.Function2;
+import io.vavr.control.Option;
 import org.junit.Test;
 
 import java.util.Random;
@@ -79,5 +80,16 @@ public class FunctionTest {
         Function2<String, String, String> function2 = (hello, world) -> hello + world;
         String hello = function2.apply("Hello", "World!");
         System.out.println(hello);
+        Function2<Integer, Integer, Integer> divide = (a, b) -> a / b;
+        // Lifting 将异常值转换为None
+        Function2<Integer, Integer, Option<Integer>> lift = Function2.lift(divide);
+        Option<Integer> apply = lift.apply(1, 0);
+        System.out.println(apply.getOrElse(0));
+        System.out.println(apply);
+
+        // Curring
+        Function2<Integer, Integer, Integer> sum = (a, b) -> a + b;
+        Function1<Integer, Integer> add2 = sum.curried().apply(2);
+        System.out.println(add2.apply(4));
     }
 }
