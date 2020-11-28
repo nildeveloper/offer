@@ -1,7 +1,10 @@
 package com.lhl.boot.service;
 
+import com.lhl.boot.cache.AbstractCache;
+import com.lhl.boot.dao.TestDao;
 import com.lhl.boot.entity.TestEntity;
 import com.lhl.boot.utils.FreemarkerUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xhtmlrenderer.swing.Java2DRenderer;
 import org.xhtmlrenderer.util.FSImageWriter;
@@ -24,31 +27,42 @@ import java.util.Map;
 @Service
 public class TestService {
 
-    public void test() throws Exception {
-        String TEMPLET_SRC = "/ftl/";
-        String SEND_BIRTHDAY_EMAIL_TEMPLATE_NAME = "sendBirthdayEmailTemplate.ftl";
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", "张三");
-        map.put("url", "https://oan.bitmain.vip/new/file/group1/M00/00/18/wKhuLV1AKyGADiitABVHCPeB9Jg419.png");
-        String html = FreemarkerUtil.processTemplate(TestEntity.class, TEMPLET_SRC,
-                SEND_BIRTHDAY_EMAIL_TEMPLATE_NAME, map);
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("test.html"), "UTF-8"));
-        writer.write(html);
-        writer.newLine();
-        writer.flush();
-        writer.close();
-
-        File file = new File("test.html");
-        Java2DRenderer renderer = new Java2DRenderer(file, 920, 600);
-        BufferedImage image = renderer.getImage();
-        FSImageWriter imageWriter = new FSImageWriter();
-        imageWriter.setWriteCompressionQuality(0.9f);
-        imageWriter.write(image, "pic.jpg");
-        File pic = new File("pic.jgp");
-    }
+    @Autowired
+    private TestDao testDao;
 
     public String testLog(String param) {
         System.out.println(param);
         return "log finished!";
+    }
+
+    private TestEntity getById(int id) {
+        return testDao.get(id);
+    }
+
+    private TestEntity getFromCache(int id) {
+        return new TestCache(id).get();
+    }
+
+    /**
+     * 本地缓存
+     */
+    public static class TestCache extends AbstractCache<TestEntity> {
+
+        @Autowired
+        TestDao testDao;
+
+        private static final String CACHE_KEY = "entityById_%s";
+
+        private int id;
+
+        public TestCache(int id) {
+            this.id = id;
+            this.key = String.format(CACHE_KEY, id);
+        }
+
+        @Override
+        public TestEntity loadCache() {
+            return testDao.get(id);
+        }
     }
 }
