@@ -22,7 +22,7 @@ public class TestController {
     @GetMapping("/test")
     public String test() {
         try {
-            testService.test();
+//            testService.test();
         } catch (Exception e) {
             return "false";
         }
